@@ -1,3 +1,14 @@
 {
-	"name":"url-parser"
+  "name": "url-parser",
+  "devDependencies": {
+  		"gulp": "3.6.x",
+		"gulp-mocha": "0.4.x",
+		"should": "3.3.x",
+		"gulp-traceur": "0.5.x",
+		"traceur": "0.0.x",
+		"component-as-module": "0.3.x",
+		"component-resolver" : "1.1.x",
+		"component-build": "1.2.x"
+  },
+  "main": "./parser.js"
 }

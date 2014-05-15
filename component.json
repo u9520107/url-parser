@@ -1,0 +1,5 @@
+{
+	"name": "url-parser",
+	"scripts": ["lib/parser.js"],
+	"main": "lib/parser.js"
+}
