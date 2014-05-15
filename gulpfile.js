@@ -45,6 +45,10 @@ gulp.task('component-build', function (cb) {
 	}
 });
 
+
+// this particular module does not use any es6 features other than component
+// which is handled by component-build
+
 /* task: traceur
  * 1. Compile the component built code from es6 syntax javascript
  * 	to es5 compatible javascript in build.es5/ folder.

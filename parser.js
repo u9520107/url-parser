@@ -60,6 +60,10 @@ require.register("url-parser", function (exports, module) {
 
 function parse (url) {
 	var commands = [];
+	if(!url)
+	{
+		return commands;
+	}
 	var resources = url.split('/');
 	resources.forEach(function (resource) {
 		var tokens = resource.split('?');
@@ -86,10 +90,10 @@ function parse (url) {
 function stringify (commands) {
 	var resources = [];
 	if(!Array.isArray(commands))
-		{
+	{
 		throw new Error('commands must be an array');
 	}
-	commands.forEach(function (command){
+	commands.forEach(function (command) {
 		var tmp = [];	
 		for(var key in command)
 		{
