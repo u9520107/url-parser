@@ -1,5 +1,6 @@
 {
   "name": "url-parser",
+  "version": "0.0.1",
   "devDependencies": {
   		"gulp": "3.6.x",
 		"gulp-mocha": "0.4.x",
