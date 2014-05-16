@@ -12,6 +12,8 @@ var traceur = require('gulp-traceur');
  *
  */
 
+
+
 gulp.task('component-build', function (cb) {
 	try
 	{
@@ -19,25 +21,25 @@ gulp.task('component-build', function (cb) {
 			install: true
 		}, function (err, tree) {
 			if(err)
-			{
-				cb(err);
-			}
-
-			var builder = build(tree, {
-				standalone: true
-			});
-			builder.scripts(function (err, string) {
-				if(err)
 				{
 					cb(err);
 				}
-				fs.writeFile(path.resolve('parser.js'), string, function (err) {
-					cb(err)
+
+				var builder = build(tree, {
+					standalone: true
 				});
-			});
+				builder.scripts(function (err, string) {
+					if(err)
+						{
+							cb(err);
+						}
+						fs.writeFile(path.resolve('parser.js'), string, function (err) {
+							cb(err);
+						});
+				});
 
 
-		})
+		});
 	}
 	catch (err)
 	{
@@ -87,7 +89,7 @@ gulp.task('watch', function () {
  * 	todo: traceur
  */
 
- gulp.task('default', ['mocha', 'watch'],function () {
- });
+gulp.task('default', ['mocha', 'watch'],function () {
+});
 
 
