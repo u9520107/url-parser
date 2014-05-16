@@ -4,7 +4,7 @@ var path = require('path');
 var parser = require(path.resolve('./parser'));
 
 describe('parser', function () {
-	var input = 'resource?where=id:34452/?where=age>18&count';
+	var input = '/resource?where=id:34452/?where=age>18&count';
 	var output = [
 		{
 		name: 'resource',
@@ -21,10 +21,22 @@ describe('parser', function () {
 		parser.parse.should.be.type('function');
 	});
 	it('should parse empty string', function () {
-		parser.parse('');
+		parser.parse('').should.eql([]);
 	});
 	it('should parse root path', function () {
-		console.log(parser.parse('/'));
+		parser.parse('/').should.eql([]);
+	});
+	it('should stringify empty command into root path', function () {
+		parser.stringify([]).should.eql('/');
+	});
+	it('should parse single resource requests without leading \'/\'', function () {
+		parser.parse('test').should.eql([{name:'test'}]);
+	});
+	it('should parse single resource requests with leading \'/\'', function () {
+		parser.parse('/test').should.eql([{name:'test'}]);
+	});
+	it('should stringify single resource requests with leading \'/\'', function () {
+		parser.stringify(parser.parse('test')).should.eql('/test');
 	});
 	it('should parse "' + input + '" into "'+ JSON.stringify(output) + '"'  , function () {
 		parser.parse(input).should.eql(output);
