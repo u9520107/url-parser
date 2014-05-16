@@ -63,7 +63,7 @@ require.register("url-parser", function (exports, module) {
  */
 
 
-function parse (path, root) {
+function parse (path) {
 	var commands = [];
 	if(!path) {
 		return commands;
