@@ -39,8 +39,6 @@ gulp.task('component-build', function (cb) {
 				});
 			});
 
-
-
 		});
 	}
 	catch (err)
@@ -57,18 +55,19 @@ gulp.task('component-build', function (cb) {
  * 1. Compile the component built code from es6 syntax javascript
  * 	to es5 compatible javascript in build.es5/ folder.
  */
-gulp.task('traceur', ['component-build'], function () {
-	return gulp.src('./build/build.js')
-	.pipe(traceur({
-		sourceMap: true,
-		modules: 'commonjs'
-	}))
-	.pipe(gulp.dest('./build.es5'));
+
+gulp.task('dist-build', function () {
+	return gulp.src('./lib/*.js')
+		.pipe(traceur({
+			sourceMap: true,
+			modules: 'commonjs'
+		}))
+		.pipe(gulp.dest('./dist'));
 });
 /* task: mocha
  * 1. Run test suite.
  */
-gulp.task('mocha', ['component-build'], function () {
+gulp.task('mocha', ['component-build', 'dist-build'], function () {
 	return gulp.src('./test/*.js')
 	.pipe(mocha({ reporter: 'list'}));
 });
