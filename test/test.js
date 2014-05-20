@@ -1,7 +1,7 @@
 
 var should = require('should');
 var path = require('path');
-var parser = require(path.resolve('./parser'));
+var parser = require(path.resolve('./build/parser'));
 
 describe('parser', function () {
 	var input = '/resource?where=id:34452/?where=age>18&count';

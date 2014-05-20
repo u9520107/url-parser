@@ -20,23 +20,25 @@ gulp.task('component-build', function (cb) {
 		resolve(process.cwd(), {
 			install: true
 		}, function (err, tree) {
-			if(err)
-				{
+			if(err)	{
+				cb(err);
+			}
+
+			var builder = build(tree, {
+				standalone: true
+			});
+			if(!fs.existsSync('build')) {
+				fs.mkdirSync('build');
+			}
+			builder.scripts(function (err, string) {
+				if(err) {
 					cb(err);
 				}
+				fs.writeFile(path.resolve('build/parser.js'), string, function (err) {
+					cb(err);
+				});
+			});
 
-				var builder = build(tree, {
-					standalone: true
-				});
-				builder.scripts(function (err, string) {
-					if(err)
-						{
-							cb(err);
-						}
-						fs.writeFile(path.resolve('parser.js'), string, function (err) {
-							cb(err);
-						});
-				});
 
 
 		});
