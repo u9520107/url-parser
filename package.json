@@ -11,5 +11,5 @@
 		"component-resolver" : "1.1.x",
 		"component-build": "1.2.x"
   },
-  "main": "lib/parser.js"
+  "main": "dist/parser.js"
 }
