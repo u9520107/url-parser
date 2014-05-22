@@ -9,6 +9,43 @@ Object.defineProperties(exports, {
   __esModule: {value: true}
 });
 var __moduleName = "parser";
+var commands = {
+  'where': {
+    alias: ['where', 'w'],
+    encode: 'w',
+    type: 'multi'
+  },
+  'count': {
+    alias: ['count', 'c'],
+    encode: 'c',
+    type: 'flag'
+  },
+  'limit': {
+    alias: ['limit', 'l'],
+    encode: 'l',
+    type: 'number'
+  },
+  'orderby': {
+    alias: ['orderby', 'order', 'or'],
+    encode: 'or',
+    type: 'single'
+  },
+  'field': {
+    alias: ['field', 'f'],
+    encode: 'f',
+    type: 'multi'
+  },
+  'groupby': {
+    alias: ['groupby', 'group', 'g'],
+    encode: 'g',
+    type: 'multi'
+  },
+  'offset': {
+    alias: ['offset', 'o'],
+    encode: 'o',
+    type: 'number'
+  }
+};
 function parse(path) {
   var commands = [];
   if (!path) {
@@ -16,7 +53,7 @@ function parse(path) {
   }
   var resources = path.split('/');
   resources.forEach(function(resource) {
-    if (resource == '') {
+    if (resource === '') {
       return;
     }
     var obj = {};
