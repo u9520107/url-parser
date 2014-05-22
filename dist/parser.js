@@ -6,6 +6,9 @@ Object.defineProperties(exports, {
   stringify: {get: function() {
       return stringify;
     }},
+  commands: {get: function() {
+      return commands;
+    }},
   __esModule: {value: true}
 });
 var __moduleName = "parser";
