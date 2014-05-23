@@ -41,6 +41,13 @@ describe('parser', function () {
 	it('should parse "' + input + '" into "'+ JSON.stringify(output) + '"'  , function () {
 		parser.parse(input).should.eql(output);
 	});
+	it('should be able to extract info', function () {
+		var obj = {w: ['id:34523']};
+		console.log(obj);
+		var str = parser.getQuery(obj, 'where');
+		console.log('test: ', str);
+		obj.should.be.type('object');
+	});
 
 	it('should have function [stringify]', function () {
 		parser.should.have.property('stringify');
