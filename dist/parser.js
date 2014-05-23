@@ -12,6 +12,9 @@ Object.defineProperties(exports, {
   addQuery: {get: function() {
       return addQuery;
     }},
+  getQuery: {get: function() {
+      return getQuery;
+    }},
   __esModule: {value: true}
 });
 var __moduleName = "parser";
