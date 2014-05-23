@@ -9,6 +9,9 @@ Object.defineProperties(exports, {
   commands: {get: function() {
       return commands;
     }},
+  addQuery: {get: function() {
+      return addQuery;
+    }},
   __esModule: {value: true}
 });
 var __moduleName = "parser";
@@ -103,6 +106,36 @@ function stringify(commands) {
     resources.push((command.name ? command.name : '') + tmp);
   });
   return '/' + resources.join('/');
+}
+function addQuery(obj, name, op) {
+  if (!commands.hasOwnProperty(name)) {
+    throw new Error(name + ' is not a recognized command');
+  }
+  var cmd = commands[name];
+  switch (cmd.type) {
+    case 'multi':
+      if (!Array.isArray(op)) {
+        op = op.split(',');
+      }
+      if (!obj.hasOwnProperty(cmd.encode)) {
+        obj[cmd.encode] = op;
+      } else {
+        obj[cmd.encode] = obj[cmd.encode].concat(op);
+      }
+      break;
+    case 'flag':
+      if (!obj.hasOwnProperty(cmd.encode)) {
+        obj[cmd.encode] = true;
+      }
+      break;
+    default:
+      if (!obj.hasOwnProperty(cmd.encode)) {
+        obj[cmd.encode] = [str.split(',')[0]];
+      } else {
+        obj[cmd.encode][0] = str.split(',')[0];
+      }
+      break;
+  }
 }
 ;
 
