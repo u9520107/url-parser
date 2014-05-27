@@ -15,6 +15,9 @@ Object.defineProperties(exports, {
   getQuery: {get: function() {
       return getQuery;
     }},
+  setQuery: {get: function() {
+      return setQuery;
+    }},
   __esModule: {value: true}
 });
 var __moduleName = "parser";
@@ -146,6 +149,15 @@ function addQuery(obj, name, op) {
       }
       break;
   }
+}
+function setQuery(obj, name, op) {
+  if (!commands.hasOwnProperty(name)) {
+    throw new Error(name + ' is not a recognized command');
+  }
+  if (obj.hasOwnProperty(name)) {
+    delete obj[name];
+  }
+  addQuery(obj, name, op);
 }
 function getQuery(obj, name) {
   if (!commands.hasOwnProperty(name)) {
