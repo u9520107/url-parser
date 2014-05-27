@@ -123,8 +123,10 @@ function addQuery(obj, name, op) {
       }
       break;
     case 'flag':
-      if (!obj.hasOwnProperty(cmd.encode)) {
+      if (op === true) {
         obj[cmd.encode] = true;
+      } else if (obj.hasOwnProperty(cmd.encode)) {
+        delete obj[cmd.encode];
       }
       break;
     case 'number':
@@ -168,9 +170,9 @@ function getQuery(obj, name) {
   switch (cmd.type) {
     case 'multi':
       if (!obj.hasOwnProperty(cmd.encode)) {
-        return '';
+        return [];
       }
-      return obj[cmd.encode].join(',');
+      return obj[cmd.encode];
     case 'flag':
       if (!obj.hasOwnProperty(cmd.encode)) {
         return false;
