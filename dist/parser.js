@@ -31,9 +31,9 @@ function stringify(cmds) {
         if (cmd.param[key] === 'true') {
           tmp.push(key);
         } else if (Array.isArray(cmd.param[key])) {
-          tmp.push(key + '[]=' + cmd.param[key].join(','));
+          tmp.push(key + '[]=' + encodeURIComponent(cmd.param[key].join(',')));
         } else {
-          tmp.push(key + '=' + cmd.param[key]);
+          tmp.push(key + '=' + encodeURIComponent(cmd.param[key]));
         }
       }
     }
@@ -59,9 +59,9 @@ function parse(path) {
           if (param.indexOf('=') > -1) {
             param = param.split('=');
             if (param[0].indexOf('[]') > -1) {
-              cmd.param[param[0].substring(0, param[0].length - 2)] = param[1].split(',');
+              cmd.param[param[0].substring(0, param[0].length - 2)] = decodeURIComponent(param[1]).split(',');
             } else {
-              cmd.param[param[0]] = param[1];
+              cmd.param[param[0]] = decodeURIComponent(param[1]);
             }
           } else {
             cmd.param[param] = true;
