@@ -28,7 +28,7 @@ function stringify(cmds) {
     var name = cmd.name || '';
     if (cmd.param) {
       for (var key in cmd.param) {
-        if (cmd.param[key] === 'true') {
+        if (cmd.param[key] === true) {
           tmp.push(key);
         } else if (Array.isArray(cmd.param[key])) {
           tmp.push(key + '[]=' + encodeURIComponent(cmd.param[key].join(',')));
