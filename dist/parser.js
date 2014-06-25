@@ -43,6 +43,7 @@ function stringify(cmds) {
   return '/' + resources.join('/');
 }
 function parse(path) {
+  console.log('parsing: %s', path);
   var cmds = [];
   if (path) {
     var resources = path.split('/');
