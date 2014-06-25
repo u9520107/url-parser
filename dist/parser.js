@@ -19,6 +19,7 @@ var obj = {
   }
 };
 function stringify(cmds) {
+  console.log('stringifying: %s', JSON.stringify(cmds, null, 4));
   if (!Array.isArray(cmds)) {
     cmds = [cmds];
   }
