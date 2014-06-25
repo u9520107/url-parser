@@ -19,7 +19,6 @@ var obj = {
   }
 };
 function stringify(cmds) {
-  console.log('stringifying: %s', JSON.stringify(cmds, null, 4));
   if (!Array.isArray(cmds)) {
     cmds = [cmds];
   }
@@ -44,7 +43,6 @@ function stringify(cmds) {
   return '/' + resources.join('/');
 }
 function parse(path) {
-  console.log('parsing: %s', path);
   var cmds = [];
   if (path) {
     var resources = path.split('/');
